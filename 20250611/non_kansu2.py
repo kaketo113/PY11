@@ -1,0 +1,11 @@
+import math
+print("商品A1"," ￥" + str(math.floor(100 * 1.08)))
+print("商品A2"," ￥" + str(math.floor(200 * 1.08)))
+print("商品A3"," ￥" + str(math.floor(300 * 1.08)))
+print("商品A4"," ￥" + str(math.floor(400 * 1.08)))
+print("商品A5"," ￥" + str(math.floor(500 * 1.08)))
+print("商品A6"," ￥" + str(math.floor(600 * 1.08)))
+print("商品A7"," ￥" + str(math.floor(700 * 1.08)))
+print("商品A8"," ￥" + str(math.floor(800 * 1.08)))
+print("商品A9"," ￥" + str(math.floor(900 * 1.08)))
+print("商品A10","￥"+ str(math.floor(1000 * 1.08)))

@@ -1,0 +1,116 @@
+import random
+
+def cr_board():
+    return 0for _ in range(9)] for _ in range(9)]
+
+def pr_board(board):
+    print()
+    print(数独ゲーム")
+    print()
+
+    for i in range(9):
+        if i %3 == 0 and i != 0:
+            print("-" * 23)
+        
+        row = "    for j in range(9:
+            if j %3 == 0 and j != 0               row += |       
+            if board[i][j] == 0               row += "              else:
+                row += f"{board[i][j]}     
+        print(f {row}")
+    
+    print()
+    print(入力例:34 (3行目4列目に7入れる)")
+    print(終了: q")
+    print()
+
+def haiti(board, row, col, num):
+    # 行のチェック
+    for j in range(9):
+        if board[row][j] == num:
+            return False
+    
+    # 列のチェック
+    for i in range(9):
+        if board[i][col] == num:
+            return False
+    
+    # 3x3ボックスのチェック
+    start_row = 3ow // 3)
+    start_col = 3(col // 3)
+    for i in range(start_row, start_row +3:
+        for j in range(start_col, start_col + 3          if board[i][j] == num:
+                return False
+    
+    return True
+
+def solve_sudoku(board):
+    for i in range(9):
+        for j in range(9          if board[i][j] == 0               for num in range(1, 10):
+                    if haiti(board, i, j, num):
+                        board[i][j] = num
+                        if solve_sudoku(board):
+                            return True
+                        board[i][j] =0            return False
+    return True
+
+def generate_puzzle():
+    # 空のボードを作成
+    board = cr_board()
+    
+    # ランダムに数字を配置
+    for _ in range(2020の数字を配置
+        row = random.randint(0, 8)
+        col = random.randint(0, 8)
+        num = random.randint(1, 9)
+        if haiti(board, row, col, num):
+            board[row][col] = num
+    
+    # 数独を解く
+    solve_sudoku(board)
+    
+    # 一部の数字を削除してパズルを作成
+    puzzle =[board[i]j] for j in range(9)] for i in range(9)]
+    for _ in range(5050の数字を削除
+        row = random.randint(0, 8)
+        col = random.randint(0,8        puzzle[row][col] = 0
+    return puzzle
+
+def main():
+    board = generate_puzzle()
+    
+    while True:
+        pr_board(board)
+        
+        # ゲームが完了したかチェック
+        if all(board[i][j] != 0 for i in range(9) for j in range(9)):
+            print("おめでとうございます！数独が完成しました！")
+            break
+        
+        # ユーザー入力
+        user_input = input(行 列 数字 を入力してください: ").strip()
+        
+        if user_input.lower() == 'q':
+            print("ゲームを終了します。")
+            break
+        
+        try:
+            parts = user_input.split()
+            if len(parts) != 3             print(正しい形式で入力してください: 行 列 数字)          continue
+            
+            row = int(parts0]) - 1  # 1ベースから0ベースに変換
+            col = int(parts[1]) -1
+            num = int(parts2      
+            if not (0 <= row <= 8 and 0 <= col <= 8 and 1 <= num <= 9):
+                print(行と列は1-9、数字は1)          continue
+            
+            if board[row][col] != 0             print("そのマスは既に埋まっています。)          continue
+            
+            if haiti(board, row, col, num):
+                board[row][col] = num
+                print(f"([object Object]row+1}, {col+1})に{num}を配置しました。")
+            else:
+                print("その数字は配置できません。")
+                
+        except ValueError:
+            print("正しい数値を入力してください。)if __name__ == "__main__":
+    main() 
